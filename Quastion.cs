@@ -14,8 +14,6 @@ namespace ConsoleApp1
 
         public string Mark { get; set; } = ""; 
 
-        //public Answers answers { get; set; }
-
         public ICollection<Answers> Answers { get; set; } = new HashSet<Answers>();
 
         public Quastion() { }

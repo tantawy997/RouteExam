@@ -12,7 +12,7 @@ namespace ConsoleApp1
 
         public int NumberOfQuastions { get; set; }
 
-        public ICollection<Quastion> Quastions { get; set; } = new List<Quastion>();
+        public List<Quastion> quastion { get; set; } = new List<Quastion>();
 
         public Exam() 
         {
@@ -20,11 +20,11 @@ namespace ConsoleApp1
         
         }
 
-        public Exam(string time, string _time, int numberOfQuastions, List<Quastion> _quastion)
+        public Exam(string _time, int numberOfQuastions, List<Quastion> _quastion)
         {
-            Time = time;
+            Time = _time;
             NumberOfQuastions = numberOfQuastions;
-            Quastions = _quastion;
+            quastion = _quastion;
 
         }
         public Exam CreateExam()

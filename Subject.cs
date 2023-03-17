@@ -36,9 +36,26 @@ namespace ConsoleApp1
 
             } while (!flag && (typeOfQ != 1 || typeOfQ != 2));
 
+            int time;
+            int numberOfQuastions;
             if (typeOfQ == 1)
             {
-                
+                do
+                {
+                    Console.WriteLine("please enter the time of the exam");
+                    flag = int.TryParse(Console.ReadLine(), out time);
+
+                } while (!flag);
+                do
+                {
+                    Console.WriteLine("please enter the number of quastions");
+
+                    flag = int.TryParse(Console.ReadLine(), out numberOfQuastions);
+
+                } while (!flag);
+
+
+
                 return new Practical();
             }
 
