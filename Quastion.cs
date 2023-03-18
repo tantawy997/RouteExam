@@ -14,11 +14,11 @@ namespace ConsoleApp1
 
         public string Mark { get; set; } = ""; 
 
-        public ICollection<Answers> Answers { get; set; } = new HashSet<Answers>();
+        public Answers Answers { get; set; } = new Answers();
 
         public Quastion() { }
 
-        public Quastion(string _header, string _body, string _mark,HashSet<Answers> _answers)
+        public Quastion(string _header, string _body, string _mark,Answers _answers)
         {
             header = _header;
             body = _body;
