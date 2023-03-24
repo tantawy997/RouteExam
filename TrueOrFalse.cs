@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class TrueOrFalse:Quastion
+    public class TrueOrFalse:Quastion
     {
-
+        public Boolean trueOrfalse { get; set; } 
     }
 }

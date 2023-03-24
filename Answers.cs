@@ -10,10 +10,16 @@ namespace ConsoleApp1
     public class Answers
     {
         [Key]
-        public int Answerid { get; set; }
+        public Guid Answerid { get; set; }
 
         public string AnswerText { get; set; } = "";
 
+        public Answers() { }
 
+        public Answers(Guid answerid, string answerText)
+        {
+            Answerid = answerid;
+            AnswerText = answerText;
+        }
     }
 }

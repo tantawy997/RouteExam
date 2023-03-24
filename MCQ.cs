@@ -7,14 +7,40 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class MCQ:Quastion
+    public class MCQ
     {
-        public string[] choices { get; set; } = { };
+        public Guid Id { get; set; } = Guid.NewGuid();
 
-        public MCQ(string[] _choices,string _header,string _body,string _mark,Answers _answers) 
-            :base(_header,_body, _mark, _answers)
+        public List<string> choices { get; set; } = new List<string>();
+
+
+        public MCQ() { } 
+
+        public MCQ(Guid _id,List<string> _choices) 
+            
         {
+            Id = _id;
             choices= _choices;
+        }
+
+          
+
+        public  MCQ GetChoices(Guid id)
+        {
+            MCQ choices = new MCQ();
+            Console.WriteLine("Please enter the choices of the quastion");
+            if (id == this.Id)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    choices.choices[i] = Console.ReadLine();
+
+                }
+            }
+
+            return choices;
+
+
         }
     }
 }
