@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class Exam:Subject
+    public abstract class Exam
     {
-        public string Time { get; set; } = "";
+        public int Time { get; set; }
 
-        public int NumberOfQuastions { get; set; }
+        public int NumberOfquestions { get; set; }
 
 
-        public List<Quastion> quastions { get; set; } = new List<Quastion>();
+        public question[] ListOfQuestions { get; set; } 
 
-        public List<Answers> answers { get; set; } = new List<Answers>();
+        //public List<Answer> Answers { get; set; } = new List<Answer>();
 
         public Exam() 
         {
@@ -23,16 +23,14 @@ namespace ConsoleApp1
         
         }
 
-        public Exam(string _time, int numberOfQuastions,
-            int _subjectId, string _subjectName, List<Answers> _answers
-            , List<Quastion> _quastions):base(_subjectId,_subjectName)
+        public Exam(int _time, int numberOfquestions)
         {
             Time = _time;
-            NumberOfQuastions = numberOfQuastions;
-            answers = _answers;
-            quastions = _quastions;
-
+            NumberOfquestions = numberOfquestions;
         }
 
+        public abstract void ShowExam();
+
+        public abstract void CreatListOfquestions();
     }
 }

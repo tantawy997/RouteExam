@@ -7,40 +7,62 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class MCQ
+    public class MCQ : question
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+		public override string header => "MCQ Question";
 
-        public List<string> choices { get; set; } = new List<string>();
-
-
-        public MCQ() { } 
-
-        public MCQ(Guid _id,List<string> _choices) 
-            
+		public MCQ()
         {
-            Id = _id;
-            choices= _choices;
-        }
-
-          
-
-        public  MCQ GetChoices(Guid id)
-        {
-            MCQ choices = new MCQ();
-            Console.WriteLine("Please enter the choices of the quastion");
-            if (id == this.Id)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    choices.choices[i] = Console.ReadLine();
-
-                }
-            }
-
-            return choices;
+            AnswersList = new Answer[3];
+        } 
 
 
-        }
-    }
+		public override void AddQuation()
+		{
+			//header
+			Console.WriteLine(header);
+
+			//body 
+			Console.WriteLine("Please enter the body of the question");
+			body= Console.ReadLine();
+
+			//mark 
+			int num;
+			do
+			{
+				Console.WriteLine("Please enter the mark of the question");
+
+
+			} while (!int.TryParse(Console.ReadLine(),out num));
+
+			Mark = num;
+
+			//array of answers 
+
+			Console.WriteLine("please enter the chioces of the question");
+
+			for(int i = 0; i < 3; i++)
+			{
+				AnswersList[i] = new Answer()
+				{
+					Answerid = i + 1,
+				};
+
+				Console.WriteLine($"please enter choice number {i+1} : ");
+				AnswersList[i].AnswerText = Console.ReadLine();
+			}
+
+			int RightAnswerId;
+			do
+			{
+				Console.WriteLine("Please specify the right answer for the question");
+
+
+			} while (!int.TryParse(Console.ReadLine(),out RightAnswerId) &&RightAnswerId < 1|| RightAnswerId > 3);
+
+			RightAnswers.Answerid = RightAnswerId;
+			RightAnswers.AnswerText = AnswersList[RightAnswerId - 1].AnswerText;
+			Console.Clear();
+		}
+	}
 }

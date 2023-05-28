@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using System.Diagnostics;
+
+namespace ConsoleApp1
 {
     internal class Program
     {
@@ -6,50 +8,30 @@
         {
             Subject subject = new Subject(01, "c#");
             Boolean flag;
-
+            subject.CReateExam();
                         
-            int typeOfQ;
-            do
-            {
-                Console.WriteLine("Please enter the type of exam you wanna create 1 " +
-                    "for practical and 2 for final");
-                flag = int.TryParse(Console.ReadLine(), out typeOfQ);
+            int typeOfQuestion;
 
-            } while (!flag && (typeOfQ != 1 || typeOfQ != 2));
-            if (typeOfQ == 1)
-            {
-               Practical practical = subject.createPractial(typeOfQ);
-                Console.Clear();
-                Console.WriteLine("do you want to start the exam y | n");
-                if (char.Parse(Console.ReadLine()) == 'y')
-                {
-                    var res= StopWatch.startPractial(practical);
+			Console.WriteLine("do you want to start the exam y | n : ");
+			if (char.Parse(Console.ReadLine()) == 'y' || (Console.ReadLine() == "Y"))
+			{
+				Console.Clear();
+                Stopwatch sw = new Stopwatch(); 
+                sw.Start();
+				subject.SubjectExam.ShowExam();
 
-                    StopWatch.ShowResultPractical(res);
+                Console.WriteLine($"the taken time {sw.Elapsed}");
 
-                }
-
-            }
+			}
             else
             {
-                FinalExam finalExam = subject.CreateExam(typeOfQ);
-                Console.Clear();
-                Console.WriteLine("do you want to start the exam y | n");
-                if (char.Parse(Console.ReadLine()) == 'y')
-                {
-                    var res = StopWatch.startFinal(finalExam);
+                Console.WriteLine("Thank you for your time");
 
-                    StopWatch.showResultFinal(res);
 
-                }
             }
 
 
-            
-            
-
-            
-        }
+		}
 
     }
 }

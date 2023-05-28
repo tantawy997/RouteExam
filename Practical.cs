@@ -7,33 +7,65 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class Practical: Exam
-    {
-        //public int ExamId { get; set; }
+	public class Practical : Exam
+	{
+		//public Practical()
+		//{
+		//}
 
-        //public string[] MCQ { get; set; } = new string[0];
+		public Practical(int _time, int numberOfquestions) : base(_time, numberOfquestions)
+		{
+		}
 
-        public Practical() { }
+		public override void CreatListOfquestions()
+		{
+			ListOfQuestions = new MCQ[NumberOfquestions];
 
-         public Practical(string _time, int _NumberOfquastions,
-           int _subjectId,string _subjectName,List<Quastion> _quastion, List<Answers> _answers) 
-            :base(_time,_NumberOfquastions,
-               _subjectId, _subjectName, _answers, _quastion)
-          {
+			for (int i =0; i < ListOfQuestions.Length;i++)
+			{
+				ListOfQuestions[i] = new MCQ();
+				ListOfQuestions[i].AddQuation();
+
+				Console.Clear();
+			}
+
+		}
+
+		public override void ShowExam()
+		{
+			foreach (var question in ListOfQuestions)
+			{
+				Console.WriteLine(question);
+
+				for (int i = 0; i < question.AnswersList.Length; i++)
+				{
+					Console.WriteLine(question.AnswersList[i]);
+
+				}
+				Console.WriteLine("---------------------------------");
+				int AnswerId;
+				do
+				{
+					Console.WriteLine("Please enter the number of you answer : ");
+				} while (!int.TryParse(Console.ReadLine(),out AnswerId));
+
+				question.UserAnswers.Answerid = AnswerId;
+				question.UserAnswers.AnswerText = question.AnswersList[AnswerId - 1].AnswerText;
+
+				Console.WriteLine("---------------------------------------");
+			}
+
+			Console.WriteLine("Right answer : ");
+			for (int i = 0; i < ListOfQuestions.Length; i++)
+			{
+				Console.WriteLine($"question {i+ 1} : {ListOfQuestions[i].body}");
+
+				Console.WriteLine($"Right Answer : {ListOfQuestions[i].RightAnswers.AnswerText}");
+
+				Console.WriteLine("______________________________________");
 
 
-          }
-
-
-        //public override string ToString()
-        //{
-            
-            
-                
-        //return $"{this.Answers}";
-           
-        //}
-
-
-    }
+			}
+		}
+	}
 }
